@@ -230,16 +230,20 @@ h2.hm.ada::after{animation:lewatjudul 1.8s .4s ease-in-out}
 
 /* v7: dermaga alat, sonar, badai, botol pesan */
 .dermaga{position:fixed;left:14px;bottom:14px;z-index:8;display:flex;flex-direction:column;gap:10px}
-.dermaga button{position:relative;width:46px;height:46px;border-radius:50%;border:2px solid rgba(232,251,255,.5);background:rgba(5,12,31,.65);backdrop-filter:blur(6px);display:grid;place-items:center;cursor:pointer;color:#e8fbff;transition:transform .2s,background .2s,color .2s}
+.dermaga button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;position:relative;width:46px;height:46px;border-radius:50%;border:2px solid rgba(232,251,255,.5);background:rgba(5,12,31,.65);backdrop-filter:blur(6px);display:grid;place-items:center;cursor:pointer;color:#e8fbff;transition:transform .2s,background .2s,color .2s}
 .dermaga svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
-.dermaga button:hover,.dermaga button[aria-pressed=true]{background:var(--glow);color:var(--abyss);transform:scale(1.1)}
+.dermaga button[aria-pressed=true]{background:var(--glow);color:var(--abyss);transform:scale(1.1)}
+.dermaga button:active{transform:scale(.92)}
+/* Efek hover hanya untuk mouse. Di layar sentuh, :hover "menempel" setelah diketuk sehingga tombol terlihat masih menyala. */
+@media (hover:hover) and (pointer:fine){.dermaga button:hover{background:var(--glow);color:var(--abyss);transform:scale(1.1)}.dermaga button:hover::after{opacity:1}}
+@media (hover:none){.dermaga button::after{display:none}}
 .dermaga button::after{content:attr(data-tip);position:absolute;left:56px;white-space:nowrap;padding:4px 12px;border-radius:999px;background:rgba(5,12,31,.92);color:#e8fbff;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s}
-.dermaga button:hover::after,.dermaga button:focus-visible::after{opacity:1}
-.sonar{position:fixed;width:2400px;height:2400px;margin:-1200px 0 0 -1200px;border-radius:50%;border:3px solid var(--glow);box-shadow:0 0 30px var(--glow),inset 0 0 60px rgba(109,255,214,.25);pointer-events:none;z-index:6;animation:sonar 2.2s linear forwards}
-@keyframes sonar{from{transform:scale(0);opacity:.95}to{transform:scale(1);opacity:0}}
-.ping{filter:brightness(1.7) drop-shadow(0 0 16px #6dffd6)}
-.badai-lapis{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity 1s;background:linear-gradient(rgba(2,4,14,.3),rgba(2,4,14,.15)),repeating-linear-gradient(104deg,transparent 0 14px,rgba(200,225,255,.16) 14px 15px);background-size:auto,60px 140px;animation:hujan .45s linear infinite}
-.badai-lapis.on{opacity:1}
+.dermaga button:focus-visible::after{opacity:1}
+.sonar{position:fixed;left:0;top:0;pointer-events:none;z-index:6}
+.ping{filter:brightness(1.6)}
+.peti.ping,.kepiting.ping{filter:brightness(1.7) drop-shadow(0 0 12px #6dffd6)}
+.badai-lapis{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity 1s;background:linear-gradient(rgba(2,4,14,.3),rgba(2,4,14,.15)),repeating-linear-gradient(104deg,transparent 0 14px,rgba(200,225,255,.16) 14px 15px);background-size:auto,60px 140px}
+.badai-lapis.on{opacity:1;animation:hujan .45s linear infinite}
 @keyframes hujan{to{background-position:0 0,-30px 140px}}
 .kilat{position:fixed;inset:0;z-index:7;background:#dfe8ff;pointer-events:none;opacity:0}
 .kilat.on{animation:sambar .38s}
@@ -256,7 +260,7 @@ body.badai .bagian{animation:ombak 3.2s ease-in-out infinite alternate}
 .surat strong{color:#ffd27a;font:800 18px 'Recursive',sans-serif}.surat p{margin:8px 0 14px;line-height:1.5}
 .surat button{padding:8px 22px;border-radius:999px;border:0;background:#ffd27a;color:#1a1a2e;font-weight:700;cursor:pointer}
 @media (max-width:760px){.dermaga{bottom:calc(16px + env(safe-area-inset-bottom));left:10px}.dermaga button{width:42px;height:42px}}
-@media (prefers-reduced-motion:reduce){.sonar{animation-duration:.01s}.badai-lapis,body.badai .bagian{animation:none}}
+@media (prefers-reduced-motion:reduce){.badai-lapis.on,body.badai .bagian{animation:none}}
 
 /* v8: potret jendela kapal */
 .tentang-grid{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:clamp(28px,6vw,64px);align-items:center}
