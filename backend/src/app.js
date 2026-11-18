@@ -12,7 +12,9 @@ import { BATAS_MB, UPLOAD_DIR, unggah } from './upload.js'
 // dan api/index.js (Vercel).
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
-app.set('trust proxy', process.env.TRUST_PROXY === 'true' ? 1 : false)
+// Di Vercel semua permintaan lewat proxy, jadi IP asli pengunjung harus dibaca dari header. Tanpa ini pembatas login
+// menganggap semua orang satu IP. Di tempat lain, aktifkan lewat TRUST_PROXY=true.
+app.set('trust proxy', process.env.TRUST_PROXY === 'true' || process.env.VERCEL ? 1 : false)
 app.use(cors({ origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',').map((s) => s.trim()) : false }))
 app.use(express.json({ limit: '200kb' }))
 

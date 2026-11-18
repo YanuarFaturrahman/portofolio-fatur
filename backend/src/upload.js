@@ -37,10 +37,22 @@ export const unggah = [
     try {
       if (!req.files?.length) return res.status(400).json({ error: 'Pilih minimal satu gambar' })
       if (!PAKAI_BLOB) return res.json({ urls: req.files.map((f) => '/uploads/' + f.filename) })
+      if (!process.env.BLOB_READ_WRITE_TOKEN && !process.env.BLOB_STORE_ID) {
+        return res.status(503).json({ error: 'Penyimpanan foto belum aktif. Di Vercel: buka tab Storage, buat Blob store bertipe Public, hubungkan ke proyek ini, lalu Redeploy.' })
+      }
       const { put } = await import('@vercel/blob') // hanya dimuat di Vercel
-      const urls = await Promise.all(req.files.map(async (f) => (
-        await put('uploads/' + namaAcak(f.mimetype), f.buffer, { access: 'public', contentType: f.mimetype, addRandomSuffix: false })
-      ).url))
+      let urls
+      try {
+        urls = await Promise.all(req.files.map(async (f) => (
+          await put('uploads/' + namaAcak(f.mimetype), f.buffer, { access: 'public', contentType: f.mimetype, addRandomSuffix: false })
+        ).url))
+      } catch (e) {
+        console.error('Vercel Blob gagal:', e.message)
+        const pesan = /access|private|public/i.test(e.message)
+          ? 'Blob store harus bertipe Public. Buat store baru dengan akses Public, hubungkan ke proyek, lalu Redeploy.'
+          : 'Gagal mengirim foto ke Vercel Blob: ' + e.message.slice(0, 160)
+        return res.status(502).json({ error: pesan })
+      }
       res.json({ urls })
     } catch (e) { next(e) }
   },
