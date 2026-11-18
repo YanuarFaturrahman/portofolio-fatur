@@ -31,8 +31,8 @@ export const STR = {
     layar: 'Gulir untuk berlayar. Kapal singgah di setiap pelabuhan pengalaman.',
     karang: 'Seperti karang yang menambah satu cincin tiap tahun, setiap cincin di bawah mewakili satu tahun belajar.', tahun: (n) => 'tahun', tahunAria: (n) => `${n} tahun`,
     // Alat & dasar laut
-    alatSelam: 'Alat selam', sonar: 'Sonar', badai: 'Badai', botolPesan: 'Botol pesan', tipSonar: 'Sonar (P)', tipBadai: 'Badai (B)', tipBotol: 'Botol pesan (M)',
-    badaiOn: 'Badai datang! Pegangan yang kuat', badaiOff: 'Laut kembali tenang', botolAria: 'Botol pesan hanyut, klik untuk membuka', suratJudul: 'Pesan dalam botol',
+    alatSelam: 'Alat selam', badai: 'Badai', botolPesan: 'Botol pesan', 
+    badaiOn: 'Badai datang! Pegangan yang kuat', badaiOff: 'Laut kembali tenang', botolOn: 'Botol pesan hanyut di laut, cari dan klik!', botolOff: 'Botol pesan disimpan kembali', botolAria: 'Botol pesan hanyut, klik untuk membuka', suratJudul: 'Pesan dalam botol',
     fakta: [
       'Lebih dari 80% dasar laut dunia belum pernah dipetakan atau dijelajahi manusia.',
       'Palung Mariana sedalam sekitar 11 km. Gunung Everest pun akan tenggelam di dalamnya.',
@@ -74,8 +74,8 @@ export const STR = {
     catatan: (bag) => `This is only a sample layout. Replace the content in src/data.js (${bag} section).`, bagPenghargaan: 'awards', bagPengalaman: 'experience', bagPendidikan: 'education',
     layar: 'Scroll to set sail. The ship stops at every port of experience.',
     karang: 'Like coral adding one ring each year, every ring below represents one year of study.', tahun: (n) => (n === 1 ? 'year' : 'years'), tahunAria: (n) => `${n} ${n === 1 ? 'year' : 'years'}`,
-    alatSelam: 'Diving tools', sonar: 'Sonar', badai: 'Storm', botolPesan: 'Message bottle', tipSonar: 'Sonar (P)', tipBadai: 'Storm (B)', tipBotol: 'Message bottle (M)',
-    badaiOn: 'A storm is coming! Hold on tight', badaiOff: 'The sea is calm again', botolAria: 'A message bottle is drifting by, click to open', suratJudul: 'Message in a bottle',
+    alatSelam: 'Diving tools', badai: 'Storm', botolPesan: 'Message bottle', 
+    badaiOn: 'A storm is coming! Hold on tight', badaiOff: 'The sea is calm again', botolOn: 'Message bottles are drifting through the sea, find one and click!', botolOff: 'Message bottles put away', botolAria: 'A message bottle is drifting by, click to open', suratJudul: 'Message in a bottle',
     fakta: [
       'More than 80% of the world’s seafloor has never been mapped or explored by humans.',
       'The Mariana Trench is about 11 km deep. Even Mount Everest would sink inside it.',
