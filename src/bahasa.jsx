@@ -8,7 +8,7 @@ export const STR = {
   id: {
     nav: { tentang: 'Tentang', keahlian: 'Keahlian', proyek: 'Proyek', pengalaman: 'Pengalaman', pendidikan: 'Pendidikan', penghargaan: 'Penghargaan', kontak: 'Kontak' },
     navSingkat: { penghargaan: 'Piala' },
-    menuUtama: 'Menu utama', senter: 'Senter', senterTip: 'Lampu selam: laut dalam jadi gelap, kursor jadi senter',
+    menuUtama: 'Menu utama', bukaMenu: 'Buka menu', tutupMenu: 'Tutup menu', senter: 'Senter', senterTip: 'Lampu selam: laut dalam jadi gelap, kursor jadi senter',
     gantiBahasa: 'Ganti ke bahasa Inggris', bahasaToast: 'Bahasa: Indonesia',
     meterZona: ['Permukaan', 'Zona cahaya', 'Zona senja', 'Laut dalam'], meterTip: 'Klik untuk menyelam ke kedalaman itu',
     paus: 'Seekor paus lewat di kedalaman 150 m', beriMakanHp: 'Ketuk layar untuk memberi makan ikan', beriMakanPc: 'Klik di mana saja untuk memberi makan ikan',
@@ -56,7 +56,7 @@ export const STR = {
   en: {
     nav: { tentang: 'About', keahlian: 'Skills', proyek: 'Projects', pengalaman: 'Experience', pendidikan: 'Education', penghargaan: 'Awards', kontak: 'Contact' },
     navSingkat: {},
-    menuUtama: 'Main menu', senter: 'Flashlight', senterTip: 'Dive light: the deep sea goes dark and your cursor becomes a flashlight',
+    menuUtama: 'Main menu', bukaMenu: 'Open menu', tutupMenu: 'Close menu', senter: 'Flashlight', senterTip: 'Dive light: the deep sea goes dark and your cursor becomes a flashlight',
     gantiBahasa: 'Switch to Indonesian', bahasaToast: 'Language: English',
     meterZona: ['Surface', 'Sunlight zone', 'Twilight zone', 'Deep sea'], meterTip: 'Click to dive to that depth',
     paus: 'A whale swam by at 150 m depth', beriMakanHp: 'Tap the screen to feed the fish', beriMakanPc: 'Click anywhere to feed the fish',

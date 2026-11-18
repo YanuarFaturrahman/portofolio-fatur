@@ -95,6 +95,7 @@ function Isi() {
   const [aktif, setAktif] = useState('tentang')
   const [senter, setSenter] = useSimpan('samudra-senter', false)
   const [paus, setPaus] = useState(false)
+  const [menu, setMenu] = useState(false) // menu hamburger (khusus HP)
   const [toast, setToast] = useState('')
   const [kat, setKat] = useState('Semua')
   const [cari, setCari] = useState('')
@@ -138,9 +139,14 @@ function Isi() {
     return () => window.removeEventListener('keydown', k)
   }, [])
 
+  // Menu hamburger: tutup dengan tombol Esc, dan otomatis tertutup kalau layar berubah jadi lebar (PC).
+  useEffect(() => { if (!hp) setMenu(false) }, [hp])
   useEffect(() => {
-    if (hp) document.querySelector('.tabbar a.aktif')?.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' })
-  }, [aktif, hp])
+    if (!menu) return
+    const k = (e) => e.key === 'Escape' && setMenu(false)
+    window.addEventListener('keydown', k)
+    return () => window.removeEventListener('keydown', k)
+  }, [menu])
 
   useEffect(() => {
     document.documentElement.lang = lang
@@ -225,16 +231,24 @@ function Isi() {
             {tombolSenter}{tombolBahasa}
           </nav>
         )}
+        {hp && (
+          <button type="button" className={'burger' + (menu ? ' buka' : '')} aria-label={menu ? t.tutupMenu : t.bukaMenu} aria-expanded={menu} aria-controls="menu-hp" onClick={() => { setMenu((v) => !v); navigator.vibrate?.(8) }}>
+            <span /><span /><span />
+          </button>
+        )}
       </header>
       {hp && (
-        <nav className="tabbar" aria-label={t.menuUtama}>
-          {bagian.map((id) => (
-            <a key={id} href={'#' + id} className={aktif === id ? 'aktif' : ''} aria-current={aktif === id ? 'true' : undefined} onClick={() => navigator.vibrate?.(8)}>
-              <Ikon n={id} />{t.navSingkat[id] || t.nav[id]}
-            </a>
-          ))}
-          {tombolSenter}{tombolBahasa}
-        </nav>
+        <>
+          <div className={'menu-tirai' + (menu ? ' ada' : '')} aria-hidden="true" onClick={() => setMenu(false)} />
+          <nav id="menu-hp" className={'menu-hp' + (menu ? ' ada' : '')} aria-label={t.menuUtama}>
+            {bagian.map((id) => (
+              <a key={id} href={'#' + id} className={aktif === id ? 'aktif' : ''} aria-current={aktif === id ? 'true' : undefined} onClick={() => { setMenu(false); navigator.vibrate?.(8) }}>
+                <Ikon n={id} />{t.nav[id]}
+              </a>
+            ))}
+            <div className="menu-alat">{tombolSenter}{tombolBahasa}</div>
+          </nav>
+        </>
       )}
       <div className="meter" aria-hidden="true" onClick={hp ? undefined : selam} title={hp ? undefined : t.meterTip}>
         <b>{depth} m</b><span>{t.meterZona[zonaIdx(depth)]}</span><i style={{ top: (depth / 200) * 100 + '%' }} />
@@ -300,8 +314,8 @@ function Isi() {
           </form>
           <Muncul tag="p" className="link " delay={200}><a href={kontak.github}>GitHub</a><a href={kontak.wa}>WhatsApp</a><a href={'mailto:' + kontak.email}>{kontak.email}</a><button className="salin" onClick={salin}>{t.salin}</button></Muncul>
         </section>
-        <DasarLaut notif={notif} />
         <footer>Fatur · {new Date().getFullYear()}</footer>
+        <DasarLaut notif={notif} />
       </main>
 
       <Alat notif={notif} />
