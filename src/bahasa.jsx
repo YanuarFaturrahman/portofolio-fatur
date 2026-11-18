@@ -31,7 +31,7 @@ export const STR = {
     layar: 'Gulir untuk berlayar. Kapal singgah di setiap pelabuhan pengalaman.',
     karang: 'Seperti karang yang menambah satu cincin tiap tahun, setiap cincin di bawah mewakili satu tahun belajar.', tahun: (n) => 'tahun', tahunAria: (n) => `${n} tahun`,
     // Alat & dasar laut
-    alatSelam: 'Alat selam', badai: 'Badai', botolPesan: 'Botol pesan', 
+    alatSelam: 'Alat selam', sonar: 'Sonar', badai: 'Badai', botolPesan: 'Botol pesan', tipSonar: 'Sonar (P)', tipBadai: 'Badai (B)', tipBotol: 'Botol pesan (M)',
     badaiOn: 'Badai datang! Pegangan yang kuat', badaiOff: 'Laut kembali tenang', botolAria: 'Botol pesan hanyut, klik untuk membuka', suratJudul: 'Pesan dalam botol',
     fakta: [
       'Lebih dari 80% dasar laut dunia belum pernah dipetakan atau dijelajahi manusia.',
@@ -74,7 +74,7 @@ export const STR = {
     catatan: (bag) => `This is only a sample layout. Replace the content in src/data.js (${bag} section).`, bagPenghargaan: 'awards', bagPengalaman: 'experience', bagPendidikan: 'education',
     layar: 'Scroll to set sail. The ship stops at every port of experience.',
     karang: 'Like coral adding one ring each year, every ring below represents one year of study.', tahun: (n) => (n === 1 ? 'year' : 'years'), tahunAria: (n) => `${n} ${n === 1 ? 'year' : 'years'}`,
-    alatSelam: 'Diving tools', badai: 'Storm', botolPesan: 'Message bottle', 
+    alatSelam: 'Diving tools', sonar: 'Sonar', badai: 'Storm', botolPesan: 'Message bottle', tipSonar: 'Sonar (P)', tipBadai: 'Storm (B)', tipBotol: 'Message bottle (M)',
     badaiOn: 'A storm is coming! Hold on tight', badaiOff: 'The sea is calm again', botolAria: 'A message bottle is drifting by, click to open', suratJudul: 'Message in a bottle',
     fakta: [
       'More than 80% of the world’s seafloor has never been mapped or explored by humans.',
