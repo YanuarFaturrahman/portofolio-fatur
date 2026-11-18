@@ -228,20 +228,16 @@ h2.hm.ada::after{animation:lewatjudul 1.8s .4s ease-in-out}
 .modal .titik button.on{background:var(--glow);transform:scale(1.4)}
 .galeri-wrap{margin-bottom:14px}.galeri-wrap:has(.titik){margin-bottom:0}
 
-/* v7: dermaga alat, sonar, badai, botol pesan */
+/* v7: dermaga alat, badai, botol pesan */
 .dermaga{position:fixed;left:14px;bottom:14px;z-index:8;display:flex;flex-direction:column;gap:10px}
-.dermaga button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;position:relative;width:46px;height:46px;border-radius:50%;border:2px solid rgba(232,251,255,.5);background:rgba(5,12,31,.65);backdrop-filter:blur(6px);display:grid;place-items:center;cursor:pointer;color:#e8fbff;transition:transform .2s,background .2s,color .2s}
+.dermaga button{-webkit-tap-highlight-color:transparent;touch-action:manipulation;position:relative;width:46px;height:46px;border-radius:50%;border:2px solid #fff;background:rgba(5,12,31,.65);backdrop-filter:blur(6px);display:grid;place-items:center;cursor:pointer;color:#fff;transition:transform .2s,background .2s,color .2s,border-color .2s}
 .dermaga svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
-.dermaga button[aria-pressed=true]{background:var(--glow);color:var(--abyss);transform:scale(1.1)}
+/* Badai: mati = ikon putih, menyala = ikon gelap di atas latar menyala. Hanya mengikuti status, tidak terpengaruh hover/fokus yang "menempel" di layar sentuh. */
+.dermaga button[aria-pressed=false]{background:rgba(5,12,31,.65);color:#fff;border-color:#fff;transform:none}
+.dermaga button[aria-pressed=true]{background:var(--glow);color:var(--abyss);border-color:var(--glow);transform:scale(1.1)}
 .dermaga button:active{transform:scale(.92)}
-/* Efek hover hanya untuk mouse. Di layar sentuh, :hover "menempel" setelah diketuk sehingga tombol terlihat masih menyala. */
-@media (hover:hover) and (pointer:fine){.dermaga button:hover{background:var(--glow);color:var(--abyss);transform:scale(1.1)}.dermaga button:hover::after{opacity:1}}
-@media (hover:none){.dermaga button::after{display:none}}
-.dermaga button::after{content:attr(data-tip);position:absolute;left:56px;white-space:nowrap;padding:4px 12px;border-radius:999px;background:rgba(5,12,31,.92);color:#e8fbff;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s}
-.dermaga button:focus-visible::after{opacity:1}
-.sonar{position:fixed;left:0;top:0;pointer-events:none;z-index:6}
-.ping{filter:brightness(1.6)}
-.peti.ping,.kepiting.ping{filter:brightness(1.7) drop-shadow(0 0 12px #6dffd6)}
+/* Efek hover hanya untuk mouse dan tombol tanpa status (botol pesan). */
+@media (hover:hover) and (pointer:fine){.dermaga button:not([aria-pressed]):hover{background:var(--glow);color:var(--abyss);transform:scale(1.1)}}
 .badai-lapis{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity 1s;background:linear-gradient(rgba(2,4,14,.3),rgba(2,4,14,.15)),repeating-linear-gradient(104deg,transparent 0 14px,rgba(200,225,255,.16) 14px 15px);background-size:auto,60px 140px}
 .badai-lapis.on{opacity:1;animation:hujan .45s linear infinite}
 @keyframes hujan{to{background-position:0 0,-30px 140px}}
